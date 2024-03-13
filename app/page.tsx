@@ -6,7 +6,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -26,11 +25,11 @@ export default function Home() {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="apple">Africa</SelectItem>
-              <SelectItem value="banana">America</SelectItem>
-              <SelectItem value="blueberry">Asia</SelectItem>
-              <SelectItem value="grapes">Europe</SelectItem>
-              <SelectItem value="pineapple">Oceania</SelectItem>
+              <SelectItem value="africa">Africa</SelectItem>
+              <SelectItem value="america">America</SelectItem>
+              <SelectItem value="asia">Asia</SelectItem>
+              <SelectItem value="europe">Europe</SelectItem>
+              <SelectItem value="oceania">Oceania</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
