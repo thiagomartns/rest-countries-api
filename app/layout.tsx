@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
-import { MantineProvider, createTheme } from "@mantine/core";
 
 const nunito = Nunito_Sans({ subsets: ["latin"] });
 
@@ -16,19 +15,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const theme = createTheme({
-    /** Put your mantine theme override here */
-  });
-
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <MantineProvider theme={theme}>
-          <Navigation />
-          <main className="h-[90vh] bg-very-dark-blue-bg px-5 ">
-            {children}
-          </main>
-        </MantineProvider>
+        <Navigation />
+        <main className="h-[90vh] p-5">{children}</main>
       </body>
     </html>
   );
