@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
 
 import Link from "next/link";
+
+import { ThemeSwitcher } from "../theme-switcher";
 
 export const Navigation = () => {
   return (
@@ -15,7 +16,7 @@ export const Navigation = () => {
         Where in the world?
       </Link>
       <div className="flex items-center gap-3">
-        <Switch id="theme" className={`data-[state=checked]:bg-dark-blue`} />
+        <ThemeSwitcher />
         <Label htmlFor="theme">Dark Mode</Label>
       </div>
     </header>
