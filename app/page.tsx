@@ -1,5 +1,12 @@
-import Image from "next/image";
+"use client";
+
+import { useMantineColorScheme } from "@mantine/core";
 
 export default function Home() {
-  return <h1 className="font-semibold">hello</h1>;
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === "dark" ? true : false;
+
+  return (
+    <h1 className={`font-semibold ${isDark ? "text-white" : ""}`}>hello</h1>
+  );
 }
