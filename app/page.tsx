@@ -26,7 +26,6 @@ export default function Home() {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
               <SelectItem value="apple">Africa</SelectItem>
               <SelectItem value="banana">America</SelectItem>
               <SelectItem value="blueberry">Asia</SelectItem>
