@@ -11,43 +11,50 @@ export const CardList = () => {
   const { countriesList, loading } = useCountries();
 
   return (
-    <section className="grid grid-cols-1 gap-10 mt-5 md:grid-cols-3">
+    <>
       {loading && (
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center mt-10">
           <LoadingSpinner />
         </div>
       )}
-      {countriesList.map((country, index) => (
-        <Link href={`/countries/${index}`} key={country.name}>
-          <Card className="rounded-xl shadow-xl">
-            <CardHeader className="p-0 rounded-xl">
-              <Image
-                className="rounded-t-xl w-full"
-                alt={`${country.name} Flag`}
-                src={country.flags.svg}
-                width={600}
-                height={2}
-                priority
-              />
-            </CardHeader>
-            <CardContent className="flex flex-col">
-              <h1 className="text-2xl font-extrabold py-5">{country.name}</h1>
-              <ul className="flex flex-col gap-2">
-                <li className="text-lg">
-                  <b>Population:</b> {formatPopulation(country.population)}
-                </li>
-                <li className="text-lg">
-                  <b>Region:</b> {country.region}
-                </li>
-                <li className="text-lg">
-                  <b>Capital: </b>
-                  {country.capital}
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </Link>
-      ))}
-    </section>
+      <section className="grid grid-cols-1 gap-10 mt-5 md:grid-cols-3 ">
+        {countriesList.map((country, index) => (
+          <Link href={`/countries/${index}`} key={country.name}>
+            <Card className="rounded-xl shadow-xl">
+              <CardHeader className="p-0 rounded-xl flex items-center">
+                <Image
+                  className="rounded-t-xl w-full"
+                  alt={`${country.name} Flag`}
+                  src={country.flags.svg}
+                  width={700}
+                  height={600}
+                  priority
+                  style={{
+                    objectFit: "cover",
+                    width: "800px",
+                    height: "300px",
+                  }}
+                />
+              </CardHeader>
+              <CardContent className="flex flex-col">
+                <h1 className="text-2xl font-extrabold py-5">{country.name}</h1>
+                <ul className="flex flex-col gap-2">
+                  <li className="text-lg">
+                    <b>Population:</b> {formatPopulation(country.population)}
+                  </li>
+                  <li className="text-lg">
+                    <b>Region:</b> {country.region}
+                  </li>
+                  <li className="text-lg">
+                    <b>Capital: </b>
+                    {country.capital}
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </section>
+    </>
   );
 };

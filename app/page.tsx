@@ -14,7 +14,7 @@ import { CardList } from "@/components/card-list";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-5">
+    <main className="flex flex-col gap-5 w-full">
       <section>
         <Input placeholder="Search for a country..." />
       </section>

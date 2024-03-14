@@ -26,7 +26,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          <main className="h-full p-5">{children}</main>
+          <main className="h-full p-5 lg:max-w-[1400px] lg:my-0 lg:mx-auto">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
