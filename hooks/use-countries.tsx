@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import api from "@/api/countries";
 
 export interface CountryProps {
   name: string;
@@ -20,15 +19,17 @@ export const useCountries = () => {
       setLoading(true);
       try {
         const promises = Array.from({ length: 249 }, (_, index) =>
-          api.get(`/${index}`)
+          fetch(`http://localhost:3000/${index}`, {
+            next: {
+              revalidate: 3600,
+            },
+          }).then((response) => response.json())
         );
         const responses = await Promise.all(promises);
-        const countriesData = responses.map((response) => response.data);
-        setCountriesList(countriesData);
-        setLoading(false);
+        setCountriesList(responses);
       } catch (err) {
         console.error("Error fetching countries:", err);
-
+      } finally {
         setLoading(false);
       }
     };
