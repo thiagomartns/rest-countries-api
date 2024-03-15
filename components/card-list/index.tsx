@@ -3,13 +3,16 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { LoadingSpinner } from "../loading-spinner";
 import { formatPopulation } from "@/helpers/number-format";
-import { useCountries } from "@/hooks/use-countries";
+import { CountryProps, useCountries } from "@/hooks/use-countries";
 import Image from "next/image";
 import Link from "next/link";
 
-export const CardList = () => {
-  const { countriesList, loading } = useCountries();
+interface CardListProps {
+  loading: boolean;
+  countriesList: CountryProps[];
+}
 
+export const CardList = ({ loading, countriesList }: CardListProps) => {
   return (
     <>
       {loading && (
