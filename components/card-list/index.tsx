@@ -20,23 +20,18 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
           <LoadingSpinner />
         </div>
       )}
-      <section className="grid grid-cols-1 gap-10 mt-5 md:grid-cols-3 ">
+      <section className="grid grid-cols-1 gap-10 mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
         {countriesList.map((country, index) => (
           <Link href={`/countries/${index}`} key={country.name}>
             <Card className="rounded-xl shadow-xl">
               <CardHeader className="p-0 rounded-xl flex items-center">
                 <Image
-                  className="rounded-t-xl w-full"
+                  className="rounded-t-xl"
                   alt={`${country.name} Flag`}
                   src={country.flags.svg}
                   width={700}
                   height={600}
                   priority
-                  style={{
-                    objectFit: "cover",
-                    width: "800px",
-                    height: "300px",
-                  }}
                 />
               </CardHeader>
               <CardContent className="flex flex-col">

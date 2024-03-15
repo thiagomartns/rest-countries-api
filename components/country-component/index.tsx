@@ -88,10 +88,9 @@ export const CountryComponent = () => {
               </li>
               <li className="text-lg">
                 <b>Currencies: </b>
-                {country?.currencies.map(
-                  (currency) =>
-                    `${currency.name} - ${currency.symbol} - ${currency.code}`
-                )}
+                {country?.currencies
+                  .map((currency) => `${currency.name}`)
+                  .join(", ")}
               </li>
               <li className="text-lg">
                 <b>Languages: </b>

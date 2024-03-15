@@ -37,7 +37,6 @@ export default function Home() {
       country.name.toLowerCase().includes(values.toLowerCase())
     );
     setFilteredCountries(filtered);
-    console.log(filteredCountries);
   }, [values || countriesList]);
 
   return (
