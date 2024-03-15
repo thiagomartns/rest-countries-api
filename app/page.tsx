@@ -100,7 +100,12 @@ export default function Home() {
           </form>
         </Form>
       </section>
-      <CardList countriesList={filteredCountries} loading={loading} />
+
+      {filteredCountries.length === 0 && values ? (
+        "No results"
+      ) : (
+        <CardList countriesList={filteredCountries} loading={loading} />
+      )}
     </main>
   );
 }

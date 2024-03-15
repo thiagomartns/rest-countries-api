@@ -16,7 +16,7 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
   return (
     <>
       {loading && (
-        <div className="flex justify-center items-center mt-10">
+        <div className="flex justify-center items-center">
           <LoadingSpinner />
         </div>
       )}
