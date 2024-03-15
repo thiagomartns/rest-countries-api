@@ -9,18 +9,13 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-interface ContryNameProps {
-  params: {
-    country: number;
-    name: string;
-  };
-}
-
-export default function CountryName({ params }: ContryNameProps) {
+export default function CountryName() {
   const [country, setCountry] = useState<CountryProps>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const params = useParams();
 
   useEffect(() => {
     setLoading(true);

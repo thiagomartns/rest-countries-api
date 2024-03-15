@@ -40,10 +40,9 @@ export const useCountries = () => {
         );
         const responses = await Promise.all(promises);
 
-        // Adicionando o campo id baseado no índice
         const countriesWithId = responses.map((country, index) => ({
           ...country,
-          id: index, // Adicionando 1 para evitar id 0
+          id: index,
         }));
 
         setCountriesList(countriesWithId);

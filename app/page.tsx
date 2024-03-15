@@ -27,23 +27,36 @@ export default function Home() {
     resolver: zodResolver(CountryForm),
     defaultValues: {
       countryInput: "",
+      region: "",
     },
   });
 
   const values = form.watch("countryInput");
+  const region = form.watch("region");
 
   useEffect(() => {
-    const filtered = countriesList.filter((country) =>
-      country.name.toLowerCase().includes(values.toLowerCase())
-    );
-    setFilteredCountries(filtered);
-  }, [values || countriesList]);
+    const filterCountries = () => {
+      const filtered = countriesList.filter((country) => {
+        const matchesName = country.name
+          .toLowerCase()
+          .includes(values.toLowerCase());
+        const matchesRegion =
+          !region ||
+          region === "all" ||
+          country.region.toLowerCase() === region.toLowerCase();
+        return matchesName && matchesRegion;
+      });
+      setFilteredCountries(filtered);
+    };
+
+    filterCountries();
+  }, [values || region || countriesList]);
 
   return (
     <main className="flex flex-col gap-5 w-full">
       <section>
         <Form {...form}>
-          <form>
+          <form className="flex flex-col gap-5">
             <FormField
               control={form.control}
               name="countryInput"
@@ -58,24 +71,34 @@ export default function Home() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="region"
+              render={({ field }) => (
+                <FormItem>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Filter by region" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="all">All Continents</SelectItem>
+                      <SelectItem value="africa">Africa</SelectItem>
+                      <SelectItem value="americas">Americas</SelectItem>
+                      <SelectItem value="asia">Asia</SelectItem>
+                      <SelectItem value="europe">Europe</SelectItem>
+                      <SelectItem value="oceania">Oceania</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
           </form>
         </Form>
-      </section>
-      <section>
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Filter by region" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="africa">Africa</SelectItem>
-              <SelectItem value="america">America</SelectItem>
-              <SelectItem value="asia">Asia</SelectItem>
-              <SelectItem value="europe">Europe</SelectItem>
-              <SelectItem value="oceania">Oceania</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
       </section>
       <CardList countriesList={filteredCountries} loading={loading} />
     </main>

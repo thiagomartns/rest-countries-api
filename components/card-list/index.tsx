@@ -3,7 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { LoadingSpinner } from "../loading-spinner";
 import { formatPopulation } from "@/helpers/number-format";
-import { CountryProps, useCountries } from "@/hooks/use-countries";
+import { CountryProps } from "@/hooks/use-countries";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -29,7 +29,7 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
             <Card className="rounded-xl shadow-xl">
               <CardHeader className="p-0 rounded-xl flex items-center">
                 <Image
-                  className="rounded-t-xl"
+                  className="rounded-t-xl object-cover xl:w-[600px] xl:h-[200px]"
                   alt={`${country.name} Flag`}
                   src={country.flags.svg}
                   width={700}
