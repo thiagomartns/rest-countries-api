@@ -7,13 +7,13 @@ This project is hosted on GitHub and requires installation of dependencies to ru
 To clone the repository, open your terminal and run:
 
 ```
-git clone git@github.com:thiagomartns/rest-contries-api.git
+git clone git@github.com:thiagomartns/rest-countries-api.git
 ```
 
 Once the repository has been cloned, navigate into the directory:
 
 ```
-cd rest-contries-api
+cd rest-countries-api
 ```
 
 To install the dependencies, make sure you have [Node.js](https://nodejs.org/) and NPM (Node Package Manager) installed on your system. Then run:
@@ -22,7 +22,7 @@ To install the dependencies, make sure you have [Node.js](https://nodejs.org/) a
 npm install
 ```
 
-This will install all the necessary dependencies for the project.
+This will install all necessary dependencies for the project.
 
 ## Starting the Local Server
 
