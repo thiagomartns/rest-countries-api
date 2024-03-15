@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { CountryForm } from "@/schemas";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useEffect, useState } from "react";
+import { Search } from "lucide-react";
 
 export default function Home() {
   const { countriesList, loading } = useCountries();
@@ -56,7 +57,7 @@ export default function Home() {
     <main className="flex flex-col gap-5 w-full">
       <section>
         <Form {...form}>
-          <form className="flex flex-col gap-5">
+          <form className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <FormField
               control={form.control}
               name="countryInput"
@@ -64,7 +65,8 @@ export default function Home() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Insert your country here..."
+                      placeholder="Search for a country..."
+                      className="lg:w-[280px]"
                       {...field}
                     />
                   </FormControl>
@@ -81,7 +83,7 @@ export default function Home() {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="md:w-[180px]">
                         <SelectValue placeholder="Filter by region" />
                       </SelectTrigger>
                     </FormControl>
