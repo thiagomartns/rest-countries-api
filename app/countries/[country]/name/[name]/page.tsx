@@ -1,26 +1,34 @@
+"use client";
+import { LoadingSpinner } from "@/components/loading-spinner";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { formatPopulation } from "@/helpers/number-format";
 import { CountryProps } from "@/hooks/use-countries";
-import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { Button } from "../ui/button";
 import { ArrowBigLeftDash } from "lucide-react";
 import Image from "next/image";
-import { formatPopulation } from "@/helpers/number-format";
-import { Badge } from "../ui/badge";
-import { LoadingSpinner } from "../loading-spinner";
+import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-export const CountryComponent = () => {
+interface ContryNameProps {
+  params: {
+    country: number;
+    name: string;
+  };
+}
+
+export default function CountryName({ params }: ContryNameProps) {
   const [country, setCountry] = useState<CountryProps>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
-  const params = useParams();
-
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/${params.country}`);
+        const response = await fetch(
+          `http://localhost:3000/${params.country}/?name=${params.name}`
+        );
         if (!response.ok) {
           throw new Error("Erro ao obter os dados do país");
         }
@@ -110,4 +118,4 @@ export const CountryComponent = () => {
       </div>
     </section>
   );
-};
+}

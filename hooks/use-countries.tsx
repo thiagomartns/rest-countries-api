@@ -20,6 +20,7 @@ export interface CountryProps {
   languages: {
     name: string;
   }[];
+  id: number;
 }
 
 export const useCountries = () => {
@@ -38,7 +39,14 @@ export const useCountries = () => {
           }).then((response) => response.json())
         );
         const responses = await Promise.all(promises);
-        setCountriesList(responses);
+
+        // Adicionando o campo id baseado no índice
+        const countriesWithId = responses.map((country, index) => ({
+          ...country,
+          id: index, // Adicionando 1 para evitar id 0
+        }));
+
+        setCountriesList(countriesWithId);
       } catch (err) {
         console.error("Error fetching countries:", err);
       } finally {

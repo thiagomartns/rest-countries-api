@@ -21,8 +21,11 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
         </div>
       )}
       <section className="grid grid-cols-1 gap-10 mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-        {countriesList.map((country, index) => (
-          <Link href={`/countries/${index}`} key={country.name}>
+        {countriesList.map((country) => (
+          <Link
+            href={`/countries/${country.id}/name/${country.name}`}
+            key={country.name}
+          >
             <Card className="rounded-xl shadow-xl">
               <CardHeader className="p-0 rounded-xl flex items-center">
                 <Image
