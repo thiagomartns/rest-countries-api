@@ -16,6 +16,15 @@ import { useForm } from "react-hook-form";
 import { CountryForm } from "@/schemas";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useEffect, useState } from "react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default function Home() {
   const { countriesList, loading } = useCountries();
@@ -50,6 +59,27 @@ export default function Home() {
 
     filterCountries();
   }, [values || region || countriesList]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 28;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredCountries.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const pageNumbers = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(filteredCountries.length / itemsPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
 
   return (
     <main className="flex flex-col gap-5 w-full">
@@ -104,8 +134,34 @@ export default function Home() {
       {filteredCountries.length === 0 && values ? (
         "No results"
       ) : (
-        <CardList countriesList={filteredCountries} loading={loading} />
+        <CardList countriesList={currentItems} loading={loading} />
       )}
+      <section className="py-10">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                className="hover:cursor-pointer"
+                onClick={() => paginate(currentPage - 1)}
+              />
+            </PaginationItem>
+            {pageNumbers.map((number) => (
+              <PaginationItem key={number}>
+                <PaginationLink
+                  className="hover:cursor-pointer"
+                  onClick={() => paginate(number)}
+                >
+                  {number}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            <PaginationItem className="hover:cursor-pointer">
+              <PaginationNext onClick={() => paginate(currentPage + 1)} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </section>
     </main>
   );
 }
