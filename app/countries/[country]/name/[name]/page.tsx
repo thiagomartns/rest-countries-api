@@ -47,7 +47,7 @@ export default function CountryName() {
         </Button>
       </div>
       {loading && <LoadingSpinner />}
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 lg:items-center lg:justify-between lg:mt-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 lg:items-center lg:justify-between lg:mt-6">
         <div>
           <Image
             className="rounded-lg"
@@ -59,9 +59,11 @@ export default function CountryName() {
           />
         </div>
         <div className="py-5 lg:flex lg:flex-col lg:w-full">
-          <h1 className="text-2xl font-extrabold py-5">{country?.name}</h1>
-          <ul className="flex flex-col gap-5 lg:flex-row lg:gap-10 lg:items-center">
-            <div>
+          <h1 className="text-2xl font-extrabold py-5 lg:text-4xl">
+            {country?.name}
+          </h1>
+          <ul className="flex flex-col gap-5 lg:flex-row lg:justify-between lg:items-center lg:mt-5">
+            <div className="lg:flex lg:flex-col lg:gap-2">
               <li className="text-lg">
                 <b>Native Name: </b>
                 {country?.nativeName}
@@ -83,7 +85,7 @@ export default function CountryName() {
                 {country?.capital}
               </li>
             </div>
-            <div>
+            <div className="lg:flex lg:flex-col lg:gap-2">
               <li className="text-lg">
                 <b>Top Level Domain: </b>
                 {country?.topLevelDomain.map((level) => level)}
@@ -103,9 +105,13 @@ export default function CountryName() {
           <div className="lg:gap-5 lg:mt-5">
             <h1 className="text-xl font-bold py-5">Border Countries:</h1>
             <div className="flex gap-2 flex-wrap ">
-              {country?.borders?.map((neighbor) => (
-                <Badge key={neighbor}>{neighbor}</Badge>
-              ))}
+              {!country?.borders ? (
+                <p>This country has no borders with neighboring countries.</p>
+              ) : (
+                country?.borders?.map((neighbor) => (
+                  <Badge key={neighbor}>{neighbor}</Badge>
+                ))
+              )}
             </div>
           </div>
         </div>

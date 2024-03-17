@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -17,7 +16,6 @@ import { useForm } from "react-hook-form";
 import { CountryForm } from "@/schemas";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useEffect, useState } from "react";
-import { Search } from "lucide-react";
 
 export default function Home() {
   const { countriesList, loading } = useCountries();
