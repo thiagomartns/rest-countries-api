@@ -41,9 +41,9 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
                 <div className="xl:h-[100px]  md:h-[90px] h-[90px]">
                   <h1
                     className={`${
-                      country.name.length > 30
+                      country.name.length > 40
                         ? "text-lg"
-                        : country.name.length > 20
+                        : country.name.length > 30
                         ? "text-xl"
                         : "text-2xl"
                     } font-extrabold pt-5`}
