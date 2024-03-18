@@ -1,30 +1,8 @@
+import { ICountry } from "@/models/country";
 import { useState, useEffect } from "react";
 
-export interface CountryProps {
-  name: string;
-  flags: {
-    svg: string;
-  };
-  population: number;
-  region: string;
-  capital: string;
-  nativeName: string;
-  subregion: string;
-  topLevelDomain: string[];
-  currencies: {
-    code: string;
-    name: string;
-    symbol: string;
-  }[];
-  borders: string[];
-  languages: {
-    name: string;
-  }[];
-  id: number;
-}
-
 export const useCountries = () => {
-  const [countriesList, setCountriesList] = useState<CountryProps[]>([]);
+  const [countriesList, setCountriesList] = useState<ICountry[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

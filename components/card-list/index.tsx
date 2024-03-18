@@ -3,13 +3,13 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { LoadingSpinner } from "../loading-spinner";
 import { formatPopulation } from "@/helpers/number-format";
-import { CountryProps } from "@/hooks/use-countries";
 import Image from "next/image";
 import Link from "next/link";
+import { ICountry } from "@/models/country";
 
 interface CardListProps {
   loading: boolean;
-  countriesList: CountryProps[];
+  countriesList: ICountry[];
 }
 
 export const CardList = ({ loading, countriesList }: CardListProps) => {

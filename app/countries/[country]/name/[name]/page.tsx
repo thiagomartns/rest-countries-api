@@ -1,17 +1,16 @@
 "use client";
 import { SkeletonCountryPage } from "@/components/country-page-skeleton";
-import { LoadingSpinner } from "@/components/loading-spinner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatPopulation } from "@/helpers/number-format";
-import { CountryProps } from "@/hooks/use-countries";
+import { ICountry } from "@/models/country";
 import { ArrowBigLeftDash } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function CountryName() {
-  const [country, setCountry] = useState<CountryProps>();
+  const [country, setCountry] = useState<ICountry>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
