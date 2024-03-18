@@ -29,7 +29,7 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
             <Card className="rounded-xl shadow-xl">
               <CardHeader className="p-0 rounded-xl flex items-center">
                 <Image
-                  className="rounded-t-xl object-cover xl:w-[600px] xl:h-[200px]"
+                  className="rounded-t-xl object-cover xl:w-[600px] xl:h-[200px] lg:w-[500px] md:h-[220px]"
                   alt={`${country.name} Flag`}
                   src={country.flags.svg}
                   width={700}
@@ -38,8 +38,20 @@ export const CardList = ({ loading, countriesList }: CardListProps) => {
                 />
               </CardHeader>
               <CardContent className="flex flex-col">
-                <h1 className="text-2xl font-extrabold py-5">{country.name}</h1>
-                <ul className="flex flex-col gap-2">
+                <div className="xl:h-[100px]  md:h-[90px] h-[90px]">
+                  <h1
+                    className={`${
+                      country.name.length > 30
+                        ? "text-lg"
+                        : country.name.length > 20
+                        ? "text-xl"
+                        : "text-2xl"
+                    } font-extrabold pt-5`}
+                  >
+                    {country.name}
+                  </h1>
+                </div>
+                <ul className="flex flex-col gap-2 lg:pt-0">
                   <li className="text-lg">
                     <b>Population:</b> {formatPopulation(country.population)}
                   </li>
