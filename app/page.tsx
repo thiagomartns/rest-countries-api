@@ -55,6 +55,7 @@ export default function Home() {
         return matchesName && matchesRegion;
       });
       setFilteredCountries(filtered);
+      setCurrentPage(1);
     };
 
     filterCountries();
@@ -148,6 +149,7 @@ export default function Home() {
             {pageNumbers.map((number) => (
               <PaginationItem key={number}>
                 <PaginationLink
+                  isActive={number === currentPage ?? false}
                   className="hover:cursor-pointer"
                   onClick={() => paginate(number)}
                 >
