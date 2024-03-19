@@ -8,79 +8,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { CardList } from "@/components/card-list";
 import { useCountries } from "@/hooks/use-countries";
-import { useForm } from "react-hook-form";
-import { CountryForm } from "@/schemas";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { CountryContext } from "@/contexts/CountryContext";
 
 export default function Home() {
-  const { countriesList, loading } = useCountries();
+  const { loading } = useCountries();
 
-  const [filteredCountries, setFilteredCountries] = useState(countriesList);
-
-  const form = useForm<z.infer<typeof CountryForm>>({
-    resolver: zodResolver(CountryForm),
-    defaultValues: {
-      countryInput: "",
-      region: "",
-    },
-  });
-
-  const values = form.watch("countryInput");
-  const region = form.watch("region");
-
-  useEffect(() => {
-    const filterCountries = () => {
-      const filtered = countriesList.filter((country) => {
-        const matchesName = country.name
-          .toLowerCase()
-          .includes(values.toLowerCase());
-        const matchesRegion =
-          !region ||
-          region === "all" ||
-          country.region.toLowerCase() === region.toLowerCase();
-        return matchesName && matchesRegion;
-      });
-      setFilteredCountries(filtered);
-      setCurrentPage(1);
-    };
-
-    filterCountries();
-  }, [values || region || countriesList]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 28;
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredCountries.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
-
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  const pageNumbers = [];
-  for (
-    let i = 1;
-    i <= Math.ceil(filteredCountries.length / itemsPerPage);
-    i++
-  ) {
-    pageNumbers.push(i);
-  }
+  const {
+    form,
+    filteredCountries,
+    values,
+    currentItems,
+    currentPage,
+    pageNumbers,
+    paginate,
+  } = useContext(CountryContext);
 
   return (
     <main className="flex flex-col gap-5 w-full">
@@ -146,7 +99,7 @@ export default function Home() {
                 onClick={() => paginate(currentPage - 1)}
               />
             </PaginationItem>
-            {pageNumbers.map((number) => (
+            {pageNumbers.map((number: number) => (
               <PaginationItem key={number}>
                 <PaginationLink
                   isActive={number === currentPage ?? false}

@@ -3,6 +3,7 @@ import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { CountryProvider } from "@/contexts/CountryContext";
 
 const nunito = Nunito_Sans({ subsets: ["latin"] });
 
@@ -19,17 +20,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navigation />
-          <main className="h-full pt-24 px-8 md:px-5 lg:max-w-[1400px] lg:my-5 lg:mx-auto">
-            {children}
-          </main>
-        </ThemeProvider>
+        <CountryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navigation />
+            <main className="h-full pt-24 px-8 md:px-5 lg:max-w-[1400px] lg:my-5 lg:mx-auto">
+              {children}
+            </main>
+          </ThemeProvider>
+        </CountryProvider>
       </body>
     </html>
   );
