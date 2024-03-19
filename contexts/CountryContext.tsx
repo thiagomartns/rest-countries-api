@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useCountries } from "@/hooks/use-countries";
 import { useForm } from "react-hook-form";
-import { CountryForm } from "@/schemas";
+import { CountrySchema } from "@/schemas";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { ICountry } from "@/models/country";
 
@@ -34,8 +34,8 @@ export function CountryProvider({ children }: CountryProviderProps) {
 
   const [filteredCountries, setFilteredCountries] = useState(countriesList);
 
-  const form = useForm<z.infer<typeof CountryForm>>({
-    resolver: zodResolver(CountryForm),
+  const form = useForm<z.infer<typeof CountrySchema>>({
+    resolver: zodResolver(CountrySchema),
     defaultValues: {
       countryInput: "",
       region: "",

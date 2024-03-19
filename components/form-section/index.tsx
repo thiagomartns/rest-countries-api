@@ -14,6 +14,15 @@ import { CountryContext } from "@/contexts/CountryContext";
 export const FormSection = () => {
   const { form } = useContext(CountryContext);
 
+  const options = [
+    { value: "all", label: "All Continents" },
+    { value: "africa", label: "Africa" },
+    { value: "americas", label: "Americas" },
+    { value: "europe", label: "Europe" },
+    { value: "asia", label: "Asia" },
+    { value: "oceania", label: "Oceania" },
+  ];
+
   return (
     <Form {...form}>
       <form className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
@@ -44,12 +53,11 @@ export const FormSection = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="all">All Continents</SelectItem>
-                  <SelectItem value="africa">Africa</SelectItem>
-                  <SelectItem value="americas">Americas</SelectItem>
-                  <SelectItem value="asia">Asia</SelectItem>
-                  <SelectItem value="europe">Europe</SelectItem>
-                  <SelectItem value="oceania">Oceania</SelectItem>
+                  {options.map(({ value, label }) => (
+                    <SelectItem value={value} key={label}>
+                      {label}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </FormItem>

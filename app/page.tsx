@@ -1,7 +1,6 @@
 "use client";
 
 import { CardList } from "@/components/card-list";
-import { useCountries } from "@/hooks/use-countries";
 
 import { useContext } from "react";
 
@@ -10,8 +9,6 @@ import { FormSection } from "@/components/form-section";
 import { PaginationSection } from "@/components/pagination-section";
 
 export default function Home() {
-  const { loading } = useCountries();
-
   const { filteredCountries, values, currentItems } =
     useContext(CountryContext);
 
@@ -22,7 +19,7 @@ export default function Home() {
       {filteredCountries.length === 0 && values ? (
         "No results"
       ) : (
-        <CardList countriesList={currentItems} loading={loading} />
+        <CardList countriesList={currentItems} />
       )}
       <PaginationSection />
     </main>

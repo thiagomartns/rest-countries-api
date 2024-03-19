@@ -1,12 +1,11 @@
 "use client";
 import { CountryPage } from "@/components/country-page";
-import { SkeletonCountryPage } from "@/components/country-page-skeleton";
+import { SkeletonCountryPage } from "@/components/country-page/country-page-skeleton";
 import { Button } from "@/components/ui/button";
 import { useCountryInfo } from "@/hooks/use-country-info";
-import { ICountry } from "@/models/country";
 import { ArrowBigLeftDash } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function CountryName() {
   const { country } = useCountryInfo();
