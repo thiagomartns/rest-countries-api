@@ -1,10 +1,7 @@
 import React from "react";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { LoadingSpinner } from "../loading-spinner";
-import { formatPopulation } from "@/helpers/number-format";
-import Image from "next/image";
-import Link from "next/link";
+
 import { ICountry } from "@/models/country";
 import { CardCountry } from "./card";
 
