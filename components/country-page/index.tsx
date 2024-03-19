@@ -1,13 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { formatPopulation } from "@/helpers/number-format";
-import { ICountry } from "@/models/country";
+import { useCountryInfo } from "@/hooks/use-country-info";
 import Image from "next/image";
 
-interface CountryPageProps {
-  country: ICountry;
-}
+export const CountryPage = () => {
+  const { country } = useCountryInfo();
 
-export const CountryPage = ({ country }: CountryPageProps) => {
   return (
     <div className="grid grid-cols-1  lg:grid-cols-2 lg:gap-20 lg:items-center lg:justify-between lg:mt-6">
       <div>

@@ -20,7 +20,7 @@ export default function CountryName() {
           Back
         </Button>
       </div>
-      {!country ? <SkeletonCountryPage /> : <CountryPage country={country} />}
+      {!country ? <SkeletonCountryPage /> : <CountryPage />}
     </section>
   );
 }
