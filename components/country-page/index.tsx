@@ -7,18 +7,18 @@ export const CountryPage = () => {
   const { country } = useCountryInfo();
 
   return (
-    <div className="grid grid-cols-1  lg:grid-cols-2 lg:gap-20 lg:items-center lg:justify-between lg:mt-6">
+    <div className="flex flex-col items-center justify-center lg:grid lg:grid-cols-2 lg:gap-20">
       <div>
         <Image
-          className="rounded-lg"
+          className="rounded-lg align-middle"
           alt={`${country?.name} Flag`}
           src={country?.flags.svg || "/default-flag.svg"}
-          width={650}
-          height={500}
+          width={500}
+          height={350}
           priority
         />
       </div>
-      <div className="py-5 lg:flex lg:flex-col lg:w-full">
+      <div className="py-5 md:flex md:flex-col md:w-full">
         <h1 className="text-2xl font-extrabold py-5 lg:text-4xl">
           {country?.name}
         </h1>
