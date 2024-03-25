@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function CountryName() {
-  const { country } = useCountryInfo();
+  const { country, loading } = useCountryInfo();
 
   const router = useRouter();
 
@@ -20,7 +20,7 @@ export default function CountryName() {
           Back
         </Button>
       </div>
-      {!country ? <SkeletonCountryPage /> : <CountryPage />}
+      {loading ? <SkeletonCountryPage /> : <CountryPage />}
     </section>
   );
 }

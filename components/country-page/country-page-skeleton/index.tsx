@@ -7,7 +7,7 @@ export const SkeletonCountryPage = () => {
   return (
     <div className="grid grid-cols-1  lg:grid-cols-2 lg:gap-20 lg:items-center lg:justify-between lg:mt-6">
       <div>
-        <Skeleton className="rounded-lg w-[650px] h-[500px]" />
+        <Skeleton className="rounded-lg w-[500px] h-[350px]" />
       </div>
       <div className="py-5 lg:flex lg:flex-col lg:w-full">
         <Skeleton className="h-8 w-full" />
