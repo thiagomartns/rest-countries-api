@@ -15,7 +15,7 @@ export const PaginationSection = () => {
   return (
     <section className="py-10">
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="flex-wrap">
           <PaginationItem>
             <PaginationPrevious
               className="hover:cursor-pointer"
